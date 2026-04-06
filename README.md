@@ -10,10 +10,11 @@ NaijaMarket is a trust-first P2P commerce platform for Nigeria focused on safe t
 
 This repository now includes a runnable **MVP backend prototype API** covering the first critical commerce flows:
 
-- Listings create/read
+- Listings create/read with mandatory trust proof fields (`proof_video_url`, `proof_dynamic_code`)
 - Conversation + chat messages
-- Order creation
-- Escrow-oriented order state transitions (pay, commit, delivery events, confirm, dispute)
+- Order creation + escrow-oriented state transitions (`pay`, `commit`, `delivery-event`, `confirm`, `dispute`)
+- Audit trail for order state changes (`/orders/:id/events`)
+- Seller reliability scoring endpoint (`/sellers/:id/score`)
 
 The current implementation uses in-memory storage so we can iterate on behavior quickly before plugging in PostgreSQL and external providers.
 
@@ -42,7 +43,7 @@ npm test
 - `GET /health`
 
 ### Listings
-- `POST /listings`
+- `POST /listings` (requires: `seller_id`, `title`, `price_ngn`, `proof_video_url`, `proof_dynamic_code`)
 - `GET /listings`
 - `GET /listings/:id`
 
@@ -58,6 +59,10 @@ npm test
 - `POST /orders/:id/delivery-event`
 - `POST /orders/:id/confirm`
 - `POST /orders/:id/dispute`
+- `GET /orders/:id/events`
+
+### Seller score
+- `GET /sellers/:id/score`
 
 ## Product docs
 
