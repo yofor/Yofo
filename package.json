@@ -1,0 +1,14 @@
+{
+  "name": "naijamarket-mvp",
+  "version": "0.1.0",
+  "description": "NaijaMarket MVP backend prototype",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
