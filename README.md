@@ -6,27 +6,72 @@ NaijaMarket is a trust-first P2P commerce platform for Nigeria focused on safe t
 
 > NaijaMarket is a platform where anyone can buy, sell, or earn safely — with escrow protection, proof verification, and structured delivery.
 
-## MVP focus
+## What is implemented now
 
-- Listings with proof-of-access (video + dynamic code)
-- Buyer-seller chat
-- Escrow checkout flow
-- Order lifecycle management
-- Manual delivery tracking
-- Seller reliability scoring
+This repository now includes a runnable **MVP backend prototype API** covering the first critical commerce flows:
 
-## Repo contents
+- Listings create/read with mandatory trust proof fields (`proof_video_url`, `proof_dynamic_code`)
+- Conversation + chat messages
+- Order creation + escrow-oriented state transitions (`pay`, `commit`, `delivery-event`, `confirm`, `dispute`)
+- Audit trail for order state changes (`/orders/:id/events`)
+- Seller reliability scoring endpoint (`/sellers/:id/score`)
+
+The current implementation uses in-memory storage so we can iterate on behavior quickly before plugging in PostgreSQL and external providers.
+
+## Quick start
+
+### Requirements
+- Node.js 20+
+
+### Run locally
+
+```bash
+npm start
+```
+
+API starts at `http://localhost:3000`.
+
+### Run tests
+
+```bash
+npm test
+```
+
+## Current API endpoints
+
+### Health
+- `GET /health`
+
+### Listings
+- `POST /listings` (requires: `seller_id`, `title`, `price_ngn`, `proof_video_url`, `proof_dynamic_code`)
+- `GET /listings`
+- `GET /listings/:id`
+
+### Conversations & Chat
+- `POST /conversations`
+- `GET /conversations/:id/messages`
+- `POST /conversations/:id/messages`
+
+### Orders
+- `POST /orders`
+- `POST /orders/:id/pay`
+- `POST /orders/:id/commit`
+- `POST /orders/:id/delivery-event`
+- `POST /orders/:id/confirm`
+- `POST /orders/:id/dispute`
+- `GET /orders/:id/events`
+
+### Seller score
+- `GET /sellers/:id/score`
+
+## Product docs
 
 - `docs/mvp-prd.md`: product requirements for phase 1.
 - `docs/mvp-architecture.md`: technical architecture and data model.
 - `docs/mvp-roadmap.md`: 6-week execution roadmap.
 
-## Recommended first build stack
+## Suggested next implementation step
 
-- **Frontend**: Next.js + TypeScript + Tailwind
-- **Backend**: NestJS (or Next API routes for fast start)
-- **Database**: PostgreSQL + Prisma
-- **Realtime chat**: WebSocket (Socket.IO)
-- **Storage**: S3-compatible bucket for media uploads
-- **Payments/Escrow rail**: Flutterwave or Paystack (escrow-style hold/release workflow)
-
+- Replace in-memory store with PostgreSQL + Prisma.
+- Add authentication + role checks.
+- Integrate a payment provider sandbox for escrow hold/release/refund events.
