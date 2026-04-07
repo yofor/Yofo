@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function Hero() {
   return (
     <section className="mx-auto max-w-6xl px-6 pb-16 pt-20">
@@ -13,12 +11,12 @@ export default function Hero() {
         NaijaMarket combines proof-of-access listings, secure payments, delivery tracking, and dispute-ready evidence in one platform.
       </p>
       <div className="mt-8 flex flex-wrap gap-3">
-        <Link href="/signup" className="rounded-md bg-brand-500 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700">
+        <button className="rounded-md bg-brand-500 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700">
           Start buying safely
-        </Link>
-        <Link href="/sell" className="rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">
-          Create listing
-        </Link>
+        </button>
+        <button className="rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+          Become a seller
+        </button>
       </div>
     </section>
   );

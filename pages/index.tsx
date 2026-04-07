@@ -28,9 +28,9 @@ export default function HomePage() {
               <p className="mt-2 text-slate-300">
                 Join early access and help shape the safest commerce network in Nigeria.
               </p>
-              <a href="/signup" className="mt-6 inline-block rounded-md bg-brand-500 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700">
-                Go to app
-              </a>
+              <button className="mt-6 rounded-md bg-brand-500 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700">
+                Request beta invite
+              </button>
             </div>
           </section>
         </main>
